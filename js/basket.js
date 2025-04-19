@@ -3,6 +3,7 @@ const clear = document.querySelector('.js-clear');
 const totalPrice = document.querySelector('.js-total-price');
 const tableProduct = document.querySelector('.js-tab');
 const buttonDel = document.querySelector('.js-tab');
+const btnDelAll = document.querySelector('.clear-cart-btn');
 
 const LS_KEY = 'basket';
 
@@ -67,14 +68,30 @@ function createMarkup(arr) {
     .join('');
 }
 
+btnDelAll.addEventListener('click', delAll);
+
+function delAll(event) {
+  // console.log(event);
+  // console.log(event.target.className);
+  if (event.target.className === 'clear-cart-btn js-clear') {
+    // console.log('ok');
+    localStorage.clear();
+    const lenArray = products.length;
+    products.splice(0, lenArray);
+    totalCostCalc();
+    tableProduct.innerHTML = titleTable;
+    btnDelAll.hidden = true;
+  }
+}
+
 buttonDel.addEventListener('click', delPosition);
 
 function delPosition(event) {
   if (event.target.nodeName === 'BUTTON') {
     const delId = event.target.dataset.id;
-    console.log(delId);
+    //console.log(delId);
     const index = products.findIndex(item => item.id == delId);
-    console.log(index);
+    //console.log(index);
     if (index !== -1) {
       products.splice(index, 1);
     }
@@ -86,6 +103,10 @@ function delPosition(event) {
     localStorage.setItem(LS_KEY, JSON.stringify(products));
 
     totalCostCalc();
+    //console.log(products.length);
+    if (!products.length) {
+      clear.hidden = true;
+    }
 
     //console.log(event.target.dataset.id);
   } else {

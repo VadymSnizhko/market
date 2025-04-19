@@ -56,6 +56,10 @@ const instruments = [
       'Бензиновий генератор GX-25 номінальною потужністю 2,5 кВт забезпечить автономність побутових приладів на дачі або у приватному будинку. Ви зможете одночасно підключити до нього освітлення, холодильник, зарядку телефону, ноутбук та водяний насос.',
   },
 ];
+/*
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
+*/
 
 const LS_KEY = 'basket';
 
@@ -103,6 +107,11 @@ function addProducts(event) {
     // Перевіряємо чи зберігається щось в LocalStorage, якщо ні то []
     const products = JSON.parse(localStorage.getItem(LS_KEY)) ?? [];
     const fine_product = products.findIndex(({ id }) => id === product_id);
+    iziToast.show({
+      color: 'green',
+      position: 'topRight',
+      message: `Your product '${curent_product.name}' add to basket`,
+    });
     if (fine_product === -1) {
       curent_product.qty = 1;
       products.push(curent_product);

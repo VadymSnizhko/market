@@ -4,7 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/style.css" />
-    <script type="module" src="./js/shop.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/izitoast/dist/css/iziToast.min.css"
+    />
+
+    <!-- Підключаємо iziToast -->
+    <script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
+
     <title>Document</title>
   </head>
   <body>
@@ -12,5 +19,8 @@
     <p><a href="basket.html" class="text-basket">Basket</a></p>
     <h2>Shop</h2>
     <ul class="products-container js-list"></ul>
+
+    <!-- Після всіх HTML-елементів підключаємо js -->
+    <script type="module" src="./js/shop.js"></script>
   </body>
 </html>
